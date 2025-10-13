@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title class="logo" id="titleText">BhashaNext</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --light-bg: rgba(255, 255, 255, 0.95);
+            --text-dark: #2d3748;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            color: var(--text-dark);
+        }
+
+        nav {
+            background: var(--light-bg);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 1.05em;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            background: var(--primary-gradient);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .sub-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            min-width: 250px;
+            padding: 15px 0;
+            margin-top: 10px;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .nav-item:hover .sub-menu {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+
+        .sub-menu::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 0;
+            right: 0;
+            height: 20px;
+        }
+
+        .sub-menu::after {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 20px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid white;
+        }
+
+        .sub-menu-link {
+            display: block;
+            padding: 15px 25px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            font-size: 1.05em;
+        }
+
+        .sub-menu-link:hover {
+            background: var(--primary-gradient);
+            color: white;
+            padding-left: 30px;
+        }
+
+        .sub-menu-link.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .nav-link-with-sub {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .nav-link-with-sub::after {
+            content: '▼';
+            font-size: 0.7em;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item:hover .nav-link-with-sub::after {
+            transform: rotate(180deg);
+        }
+
+        .language-selector-nav {
+            position: relative;
+        }
+
+        .lang-dropdown-btn {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .lang-dropdown-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: 120%;
+            right: 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            min-width: 150px;
+            display: none;
+            overflow: hidden;
+        }
+
+        .lang-dropdown.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .lang-option {
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
+
+        .lang-option:hover {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background: var(--text-dark);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero {
+            background: var(--light-bg);
+            border-radius: 30px;
+            padding: 80px 60px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 40px;
+            background: var(--secondary-gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(240, 147, 251, 0.3);
+            cursor: pointer;
+            border: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(240, 147, 251, 0.5);
+        }
+
+        .tools-quick-access {
+            background: var(--light-bg);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .tools-quick-access.expanded {
+            max-height: 1000px;
+            opacity: 1;
+            margin-bottom: 30px;
+        }
+
+        .tools-quick-access h3 {
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+        }
+
+        .quick-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .quick-tool-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 30px 25px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .quick-tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .quick-tool-card .tool-icon {
+            font-size: 3em;
+            margin: 0;
+        }
+
+        .quick-tool-card h4 {
+            font-size: 1.2em;
+            margin: 0;
+        }
+
+        .quick-tool-card p {
+            font-size: 0.9em;
+            color: #666;
+            margin: 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: var(--light-bg);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .tool-card {
+            background: var(--light-bg);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .tool-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tool-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .tool-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .tool-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--accent-gradient);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .about-content, .contact-content {
+            background: var(--light-bg);
+            border-radius: 30px;
+            padding: 60px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-content h2, .contact-content h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-content p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 20px;
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            background: var(--secondary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group textarea {
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1em;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            padding: 18px;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 25px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+        }
+
+        .contact-icon {
+            font-size: 2.5em;
+        }
+
+        .contact-details h4 {
+            font-size: 1.3em;
+            margin-bottom: 8px;
+        }
+
+        .contact-details p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .custom-amount {
+            margin-top: 40px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .custom-amount input {
+            width: 100%;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            font-size: 1.2em;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+
+        footer p {
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background: var(--light-bg);
+                width: 100%;
+                padding: 30px 20px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s ease;
+                gap: 15px;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-item .sub-menu {
+                position: static;
+                display: none;
+                box-shadow: none;
+                margin-top: 10px;
+                margin-left: 20px;
+                border-left: 3px solid #667eea;
+                border-radius: 0;
+                padding: 10px 0;
+            }
+
+            .nav-item .sub-menu::before, .nav-item .sub-menu::after {
+                display: none;
+            }
+
+            .nav-item.show-mobile .sub-menu {
+                display: block;
+                opacity: 1;
+                transform: none;
+            }
+
+            .sub-menu-link {
+                padding: 12px 20px;
+            }
+
+            .sub-menu-link:hover {
+                padding-left: 25px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero {
+                padding: 50px 30px;
+            }
+
+            .hero h1 {
+                font-size: 2.2em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-content, .contact-content {
+                padding: 40px 30px;
+            }
+
+            .features-grid, .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lang-dropdown {
+                right: auto;
+                left: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8em;
+            }
+
+            .nav-container {
+                height: 60px;
+            }
+
+            .logo {
+                font-size: 1.4em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo" id="logoText">BhashaNext</div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#" class="nav-link active" data-page="home" id="navHome">Home</a></li>
+                <li><a href="#" class="nav-link" data-page="about" id="navAbout">About</a></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link nav-link-with-sub" data-page="tools" id="navTools">Tools</a>
+                    <div class="sub-menu">
+                        <a href="tools/calculator.html" class="sub-menu-link" target="_blank" id="subCalc">🔢 Calculator</a>
+                        <a href="#" class="sub-menu-link disabled" target="_blank" id="subQuickLink2">🔐 Password.....</a>
+                        <a href="#" class="sub-menu-link disabled" target="_blank" id="subQuickLink3">🌍 Timezone.....</a>
+                    </div>
+                </li>
+                <li><a href="version.html" class="nav-link" target="_blank" id="navVersion">Version</a></li>
+                <li><a href="#" class="nav-link" data-page="contact" id="navContact">Contact</a></li>
+                <li class="language-selector-nav">
+                    <button class="lang-dropdown-btn" id="langBtn">
+                        <span>🌐</span>
+                        <span id="currentLang">English</span>
+                    </button>
+                    <div class="lang-dropdown" id="langDropdown">
+                        <div class="lang-option" data-lang="en">English</div>
+                        <div class="lang-option" data-lang="hi">हिंदी</div>
+                        <div class="lang-option" data-lang="te">తెలుగు</div>
+                        <div class="lang-option" data-lang="ta">தமிழ்</div>
+                        <div class="lang-option" data-lang="kn">ಕನ್ನಡ</div>
+                        <div class="lang-option" data-lang="ml">മലയാളം</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div id="home" class="page active">
+            <div class="hero">
+                <h1 id="heroTitle">Welcome to Our Platform</h1>
+                <p id="heroDesc">Experience the power of multilingual digital tools designed for everyone</p>
+                <button class="cta-button" id="heroBtn">Explore Tools</button>
+            </div>
+
+            <div class="tools-quick-access" id="toolsQuickAccess">
+                <h3 id="quickToolsTitle">Available Tools</h3>
+                <div class="quick-tools-grid">
+                    <a href="tools/calculator.html" class="quick-tool-card" target="_blank">
+                        <div class="tool-icon">🔢</div>
+                        <h4 id="quickCalcTitle">Calculator</h4>
+                        <p id="quickCalcDesc">Advanced calculator with number translation</p>
+                    </a>
+                    <div class="quick-tool-card" style="opacity: 0.6; pointer-events: none;">
+                        <div class="tool-icon">📊</div>
+                        <h4 id="quickTool2Title">Password.....</h4>
+                        <p id="quickTool2Desc">Coming Soon</p>
+                    </div>
+                    <div class="quick-tool-card" style="opacity: 0.6; pointer-events: none;">
+                        <div class="tool-icon">📝</div>
+                        <h4 id="quickTool3Title">Timezone.....</h4>
+                        <p id="quickTool3Desc">Coming Soon</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3 id="feature1Title">Multilingual Support</h3>
+                    <p id="feature1Desc">Access our platform in 6 different languages including English, Hindi, Telugu, Tamil, Kannada, and Malayalam.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 id="feature2Title">Fast & Responsive</h3>
+                    <p id="feature2Desc">Lightning-fast performance with beautiful responsive design that works seamlessly on all devices.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3 id="feature3Title">Secure & Private</h3>
+                    <p id="feature3Desc">Your data stays with you. All calculations and operations happen locally in your browser.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="about" class="page">
+            <div class="about-content">
+                <h2 id="aboutTitle">About Us</h2>
+                <p id="aboutDesc1">We are dedicated to creating accessible digital tools that break language barriers and empower users across India and beyond.</p>
+                <p id="aboutDesc2">Our mission is to provide high-quality, user-friendly applications that serve diverse linguistic communities with equal excellence.</p>
+                <p id="aboutDesc3">Every tool we create is designed with care, keeping user experience and accessibility at the forefront of our development process.</p>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label" id="statLang">Languages</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label" id="statFree">Free</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label" id="statAvailable">Available</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tools" class="page">
+            <div class="hero">
+                <h1 id="toolsTitle">Our Tools</h1>
+                <p id="toolsDesc">Powerful utilities designed to make your life easier</p>
+            </div>
+
+            <div class="tools-grid">
+                <a href="tools/calculator.html" class="tool-card" target="_blank">
+                    <div class="tool-icon">🔢</div>
+                    <h3 id="calcTitle">Calculator</h3>
+                    <p id="calcDesc">Advanced calculator with number-to-word translation in 6 languages. Perfect for education and daily calculations.</p>
+                    <span class="tool-badge" id="calcBadge">Available Now</span>
+                </a>
+
+                <div class="tool-card" style="opacity: 0.6; cursor: not-allowed;">
+                    <div class="tool-icon">📊</div>
+                    <h3 id="tool2Title">Password.....</h3>
+                    <p id="tool2Desc">Coming Soon!</p>
+                    <span class="tool-badge" style="background: linear-gradient(135deg, #a8a8a8 0%, #6b6b6b 100%);" id="tool2Badge">Coming Soon!</span>
+                </div>
+
+                <div class="tool-card" style="opacity: 0.6; cursor: not-allowed;">
+                    <div class="tool-icon">📝</div>
+                    <h3 id="tool3Title">Timezone.....</h3>
+                    <p id="tool3Desc">Coming Soon!</p>
+                    <span class="tool-badge" style="background: linear-gradient(135deg, #a8a8a8 0%, #6b6b6b 100%);" id="tool3Badge">Coming Soon!</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="contact" class="page">
+            <div class="contact-content">
+                <h2 id="contactTitle">Get In Touch</h2>
+                <p id="contactSubtitle">We'd love to hear from you!</p>
+                <div style="margin-top: 30px; text-align: center;">
+                    <a href="mailto:hi.bhashanext@zohomail.in" style="display: inline-block; padding: 18px 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 1.1em; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);">
+                        📧 hi.bhashanext@zohomail.in
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p id="footerText">© 2025 BhashaNext. All rights reserved.</p>
+        <p id="footerMade">Made with ❤️ for the multilingual community</p>
+    </footer>
+
+    <script>
+        const translations = {
+            en: {
+                titleText: "BhashaNext",
+                logoText: "BhashaNext",
+                navHome: "Home",
+                navAbout: "About",
+                navTools: "Tools",
+                navVersion: "Version",
+                navContact: "Contact",
+                subCalc: "🔢 Calculator",
+                subTool2: "🔐 Password.....",
+                subTool3: "🌍 Timezone.....",
+                heroTitle: "Welcome to Our Platform",
+                heroDesc: "Experience the power of multilingual digital tools designed for everyone",
+                heroBtn: "Explore Tools",
+                quickToolsTitle: "Available Tools",
+                quickCalcTitle: "Calculator",
+                quickCalcDesc: "Advanced calculator with number translation",
+                quickTool2Title: "Password.....",
+                quickTool2Desc: "Coming Soon!",
+                quickTool3Title: "Timezone.....",
+                quickTool3Desc: "Coming Soon!",
+                feature1Title: "Multilingual Support",
+                feature1Desc: "Access our platform in 6 different languages including English, Hindi, Telugu, Tamil, Kannada, and Malayalam.",
+                feature2Title: "Fast & Responsive",
+                feature2Desc: "Lightning-fast performance with beautiful responsive design that works seamlessly on all devices.",
+                feature3Title: "Secure & Private",
+                feature3Desc: "Your data stays with you. All calculations and operations happen locally in your browser.",
+                aboutTitle: "About Us",
+                aboutDesc1: "We are dedicated to creating accessible digital tools that break language barriers and empower users across India and beyond.",
+                aboutDesc2: "Our mission is to provide high-quality, user-friendly applications that serve diverse linguistic communities with equal excellence.",
+                aboutDesc3: "Every tool we create is designed with care, keeping user experience and accessibility at the forefront of our development process.",
+                statLang: "Languages",
+                statFree: "Free",
+                statAvailable: "Available",
+                toolsTitle: "Our Tools",
+                toolsDesc: "Powerful utilities designed to make your life easier",
+                calcTitle: "Calculator",
+                calcDesc: "Advanced calculator with number-to-word translation in 6 languages. Perfect for education and daily calculations.",
+                calcBadge: "Available Now",
+                tool2Title: "Password.....",
+                tool2Desc: "Coming Soon!",
+                tool2Badge: "Coming Soon!",
+                tool3Title: "Timezone.....",
+                tool3Desc: "Coming Soon!",
+                tool3Badge: "Coming Soon!",
+                contactTitle: "Get In Touch",
+                contactSubtitle: "We'd love to hear from you!",
+                labelName: "Name",
+                labelEmail: "Email",
+                labelMessage: "Message",
+                submitBtn: "Send Message",
+                emailTitle: "Email",
+                phoneTitle: "Phone",
+                socialTitle: "Social Media",
+                socialDesc: "Connect with us on social platforms",
+                footerText: "© 2025 BhashaNext. All rights reserved.",
+                footerMade: "Made with ❤️ for the multilingual community"
+            },
+            hi: {
+                titleText: "भाषानेक्स्ट",
+                logoText: "भाषानेक्स्ट",
+                navHome: "होम",
+                navAbout: "हमारे बारे में",
+                navTools: "उपकरण",
+                navVersion: "संस्करण",
+                navContact: "संपर्क",
+                subCalc: "🔢 बहुभाषी कैलकुलेटर",
+                subTool2: "🔐 पासवर्ड.....",
+                subTool3: "🌍 समय क्षेत्र.....",
+                heroTitle: "हमारे मंच में आपका स्वागत है",
+                heroDesc: "सभी के लिए डिज़ाइन किए गए बहुभाषी डिजिटल टूल की शक्ति का अनुभव करें",
+                heroBtn: "उपकरण देखें",
+                quickToolsTitle: "उपलब्ध उपकरण",
+                quickCalcTitle: "बहुभाषी कैलकुलेटर",
+                quickCalcDesc: "संख्या अनुवाद के साथ उन्नत कैलकुलेटर",
+                quickTool2Title: "पासवर्ड.....",
+                quickTool2Desc: "जल्द आ रहा है!",
+                quickTool3Title: "समय क्षेत्र.....",
+                quickTool3Desc: "जल्द आ रहा है!",
+                feature1Title: "बहुभाषी समर्थन",
+                feature1Desc: "हमारे प्लेटफॉर्म को 6 विभिन्न भाषाओं में एक्सेस करें!",
+                feature2Title: "तेज़ और उत्तरदायी",
+                feature2Desc: "सभी उपकरणों पर निर्बाध रूप से काम करने वाला सुंदर डिज़ाइन!",
+                feature3Title: "सुरक्षित और निजी",
+                feature3Desc: "आपका डेटा आपके पास रहता है! सभी गणनाएं स्थानीय रूप से होती हैं!",
+                aboutTitle: "हमारे बारे में",
+                aboutDesc1: "हम सुलभ डिजिटल उपकरण बनाने के लिए समर्पित हैं!",
+                aboutDesc2: "हमारा मिशन उच्च गुणवत्ता वाले अनुप्रयोग प्रदान करना है!",
+                aboutDesc3: "हम जो भी उपकरण बनाते हैं वह देखभाल के साथ डिज़ाइन किया गया है!",
+                statLang: "भाषाएँ",
+                statFree: "मुफ्त",
+                statAvailable: "उपलब्ध",
+                toolsTitle: "हमारे उपकरण",
+                toolsDesc: "आपके जीवन को आसान बनाने के लिए शक्तिशाली उपयोगिताएँ",
+                calcTitle: "बहुभाषी कैलकुलेटर",
+                calcDesc: "6 भाषाओं में संख्या-से-शब्द अनुवाद के साथ उन्नत कैलकुलेटर!",
+                calcBadge: "अभी उपलब्ध",
+                tool2Title: "पासवर्ड.....",
+                tool2Desc: "जल्द आ रहा है!",
+                tool2Badge: "जल्द आ रहा है!",
+                tool3Title: "समय क्षेत्र.....",
+                tool3Desc: "जल्द आ रहा है!",
+                tool3Badge: "जल्द आ रहा है!",
+                contactTitle: "संपर्क में रहें",
+                contactSubtitle: "हमें आपसे सुनना अच्छा लगेगा!",
+                labelName: "नाम",
+                labelEmail: "ईमेल",
+                labelMessage: "संदेश",
+                submitBtn: "संदेश भेजें",
+                emailTitle: "ईमेल",
+                phoneTitle: "फोन",
+                socialTitle: "सोशल मीडिया",
+                socialDesc: "सोशल प्लेटफॉर्म पर हमारे साथ जुड़ें",
+                footerText: "© 2025 भाषानेक्स्ट. सर्वाधिकार सुरक्षित.",
+                footerMade: "बहुभाषी समुदाय के लिए ❤️ के साथ बनाया गया"
+            },
+            te: {
+                titleText: "భాషనెక్స్ట్",
+                logoText: "భాషనెక్స్ట్",
+                navHome: "హోమ్",
+                navAbout: "మా గురించి",
+                navTools: "సాధనాలు",
+                navVersion: "వెర్షన్",
+                navContact: "సంప్రదించండి",
+                subCalc: "🔢 బహుభాషా కాలిక్యులేటర్",
+                subTool2: "🔐 పాస్‌వర్డ్.....",
+                subTool3: "🌍 సమయ మండలం.....",
+                heroTitle: "మా వేదికకు స్వాగతం",
+                heroDesc: "అందరికీ రూపొందించిన బహుభాషా డిజిటల్ సాధనాల శక్తిని అనుభవించండి",
+                heroBtn: "సాధనాలను అన్వేషించండి",
+                quickToolsTitle: "అందుబాటులో ఉన్న సాధనాలు",
+                quickCalcTitle: "బహుభాషా కాలిక్యులేటర్",
+                quickCalcDesc: "సంఖ్య అనువాదంతో అధునాతన కాలిక్యులేటర్",
+                quickTool2Title: "పాస్‌వర్డ్.....",
+                quickTool2Desc: "త్వరలో!",
+                quickTool3Title: "సమయ మండలం.....",
+                quickTool3Desc: "త్వరలో!",
+                feature1Title: "బహుభాషా మద్దతు",
+                feature1Desc: "6 వివిధ భాషలలో మా వేదికను యాక్సెస్ చేయండి!",
+                feature2Title: "వేగవంతమైన మరియు రెస్పాన్సివ్",
+                feature2Desc: "అన్ని పరికరాలలో సజావుగా పనిచేసే అందమైన డిజైన్!",
+                feature3Title: "సురక్షితమైన మరియు ప్రైవేట్",
+                feature3Desc: "మీ డేటా మీతో ఉంటుంది! అన్ని లెక్కలు స్థానికంగా జరుగుతాయి!",
+                aboutTitle: "మా గురించి",
+                aboutDesc1: "మేము అందుబాటులో ఉండే డిజిటల్ సాధనాలను సృష్టించడానికి అంకితభావంతో ఉన్నాము!",
+                aboutDesc2: "అధిక-నాణ్యత అప్లికేషన్‌లను అందించడం మా లక్ష్యం!",
+                aboutDesc3: "మేము సృష్టించే ప్రతి సాధనం జాగ్రత్తతో రూపొందించబడింది!",
+                statLang: "భాషలు",
+                statFree: "ఉచితం",
+                statAvailable: "అందుబాటులో",
+                toolsTitle: "మా సాధనాలు",
+                toolsDesc: "మీ జీవితాన్ని సులభతరం చేయడానికి శక్తివంతమైన యుటిలిటీలు",
+                calcTitle: "బహుభాషా కాలిక్యులేటర్",
+                calcDesc: "6 భాషలలో సంఖ్య-నుండి-పదం అనువాదంతో అధునాతన కాలిక్యులేటర్!",
+                calcBadge: "ఇప్పుడు అందుబాటులో ఉంది",
+                tool2Title: "పాస్‌వర్డ్.....",
+                tool2Desc: "వరలో!",
+                tool2Badge: "వరలో!",
+                tool3Title: "సమయ మండలం.....",
+                tool3Desc: "వరలో!",
+                tool3Badge: "వరలో!",
+                contactTitle: "సంప్రదించండి",
+                contactSubtitle: "మేము మీ నుండి వినడానికి ఇష్టపడతాము!",
+                labelName: "పేరు",
+                labelEmail: "ఇమెయిల్",
+                labelMessage: "సందేశం",
+                submitBtn: "సందేశం పంపండి",
+                emailTitle: "ఇమెయిల్",
+                phoneTitle: "ఫోన్",
+                socialTitle: "సోషల్ మీడియా",
+                socialDesc: "సామాజిక వేదికలలో మాతో కనెక్ట్ అవ్వండి",
+                footerText: "© 2025 భాషనెక్స్ట్. అన్ని హక్కులు రిజర్వ్.",
+                footerMade: "బహుభాషా సమాజం కోసం ❤️తో తయారు చేయబడింది"
+            },
+            ta: {
+                titleText: "பாஷனெக்ஸ்ட்",
+                logoText: "பாஷனெக்ஸ்ட்",
+                navHome: "முகப்பு",
+                navAbout: "எங்களை பற்றி",
+                navTools: "கருவிகள்",
+                navVersion: "பதிப்பு",
+                navContact: "தொடர்பு",
+                subCalc: "🔢 பன்மொழி கால்குலேட்டர்",
+                subTool2: "🔐 கடவுச்சொல்.....",
+                subTool3: "🌍 நேர மண்டலம்.....",
+                heroTitle: "எங்கள் தளத்திற்கு வரவேற்கிறோம்",
+                heroDesc: "அனைவருக்கும் வடிவமைக்கப்பட்ட பன்மொழி டிஜிட்டல் கருவிகளின் சக்தியை அனுபவிக்கவும்",
+                heroBtn: "கருவிகளை ஆராயுங்கள்",
+                quickToolsTitle: "கிடைக்கும் கருவிகள்",
+                quickCalcTitle: "பன்மொழி கால்குலேட்டர்",
+                quickCalcDesc: "எண் மொழிபெயர்ப்புடன் மேம்பட்ட கால்குலேட்டர்",
+                quickTool2Title: "கடவுச்சொல்.....",
+                quickTool2Desc: "விரைவில்!",
+                quickTool3Title: "நேர மண்டலம்.....",
+                quickTool3Desc: "விரைவில்!",
+                feature1Title: "பன்மொழி ஆதரவு",
+                feature1Desc: "6 வெவ்வேறு மொழிகளில் எங்கள் தளத்தை அணுகவும்!",
+                feature2Title: "வேகமான மற்றும் பதிலளிக்கக்கூடிய",
+                feature2Desc: "அனைத்து சாதனங்களிலும் தடையின்றி செயல்படும் அழகான வடிவமைப்பு!",
+                feature3Title: "பாதுகாப்பான மற்றும் தனிப்பட்ட",
+                feature3Desc: "உங்கள் தரவு உங்களுடன் இருக்கும்! அனைத்து கணக்கீடுகளும் உள்ளூரில் நடக்கும்!",
+                aboutTitle: "எங்களை பற்றி",
+                aboutDesc1: "அணுகக்கூடிய டிஜிட்டல் கருவிகளை உருவாக்குவதற்கு நாங்கள் அர்ப்பணித்துள்ளோம்!",
+                aboutDesc2: "உயர்தர பயன்பாடுகளை வழங்குவதே எங்கள் நோக்கம்!",
+                aboutDesc3: "நாங்கள் உருவாக்கும் ஒவ்வொரு கருவியும் கவனத்துடன் வடிவமைக்கப்பட்டுள்ளது!",
+                statLang: "மொழிகள்",
+                statFree: "இலவசம்",
+                statAvailable: "கிடைக்கும்",
+                toolsTitle: "எங்கள் கருவிகள்",
+                toolsDesc: "உங்கள் வாழ்க்கையை எளிதாக்க வடிவமைக்கப்பட்ட சக்திவாய்ந்த பயன்பாடுகள்",
+                calcTitle: "பன்மொழி கால்குலேட்டர்",
+                calcDesc: "6 மொழிகளில் எண்ணிலிருந்து சொல் மொழிபெயர்ப்புடன் மேம்பட்ட கால்குலேட்டர்!",
+                calcBadge: "இப்போது கிடைக்கிறது",
+                tool2Title: "கடவுச்சொல்.....",
+                tool2Desc: "விரைவில்!",
+                tool2Badge: "விரைவில்!",
+                tool3Title: "நேர மண்டலம்.....",
+                tool3Desc: "விரைவில்!",
+                tool3Badge: "விரைவில்!",
+                contactTitle: "தொடர்பில் இருங்கள்",
+                contactSubtitle: "உங்களிடமிருந்து கேட்க விரும்புகிறோம்!",
+                labelName: "பெயர்",
+                labelEmail: "மின்னஞ்சல்",
+                labelMessage: "செய்தி",
+                submitBtn: "செய்தியை அனுப்பு",
+                emailTitle: "மின்னஞ்சல்",
+                phoneTitle: "தொலைபேசி",
+                socialTitle: "சமூக ஊடகம்",
+                socialDesc: "சமூக தளங்களில் எங்களுடன் இணைக்கவும்",
+                footerText: "© 2025 பாஷனெக்ஸ்ட். அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.",
+                footerMade: "பன்மொழி சமூகத்திற்காக ❤️ உடன் உருவாக்கப்பட்டது"
+            },
+            kn: {
+                titleText: "ಭಾಷಾನೆಕ್ಸ್ಟ್",
+                logoText: "ಭಾಷಾನೆಕ್ಸ್ಟ್",
+                navHome: "ಮುಖಪುಟ",
+                navAbout: "ನಮ್ಮ ಬಗ್ಗೆ",
+                navTools: "ಸಾಧನಗಳು",
+                navVersion: "ಆವೃತ್ತಿ",
+                navContact: "ಸಂಪರ್ಕಿಸಿ",
+                subCalc: "🔢 ಬಹುಭಾಷಾ ಕ್ಯಾಲ್ಕುಲೇಟರ್",
+                subTool2: "🔐 ಪಾಸ್ವರ್ಡ್.....",
+                subTool3: "🌍 ಸಮಯ ವಲಯ.....",
+                heroTitle: "ನಮ್ಮ ವೇದಿಕೆಗೆ ಸ್ವಾಗತ",
+                heroDesc: "ಎಲ್ಲರಿಗಾಗಿ ವಿನ್ಯಾಸಗೊಳಿಸಿದ ಬಹುಭಾಷಾ ಡಿಜಿಟಲ್ ಸಾಧನಗಳ ಶಕ್ತಿಯನ್ನು ಅನುಭವಿಸಿ",
+                heroBtn: "ಸಾಧನಗಳನ್ನು ಅನ್ವೇಷಿಸಿ",
+                quickToolsTitle: "ಲಭ್ಯವಿರುವ ಸಾಧನಗಳು",
+                quickCalcTitle: "ಬಹುಭಾಷಾ ಕ್ಯಾಲ್ಕುಲೇಟರ್",
+                quickCalcDesc: "ಸಂಖ್ಯೆ ಅನುವಾದದೊಂದಿಗೆ ಸುಧಾರಿತ ಕ್ಯಾಲ್ಕುಲೇಟರ್",
+                quickTool2Title: "ಪಾಸ್ವರ್ಡ್.....",
+                quickTool2Desc: "ಶೀಘ್ರದಲ್ಲೇ ಬರಲಿದೆ!",
+                quickTool3Title: "ಸಮಯ ವಲಯ.....",
+                quickTool3Desc: "ಶೀಘ್ರದಲ್ಲೇ ಬರಲಿದೆ!",
+                feature1Title: "ಬಹುಭಾಷಾ ಬೆಂಬಲ",
+                feature1Desc: "6 ವಿವಿಧ ಭಾಷೆಗಳಲ್ಲಿ ನಮ್ಮ ವೇದಿಕೆಯನ್ನು ಪ್ರವೇಶಿಸಿ.",
+                feature2Title: "ವೇಗವಾದ ಮತ್ತು ಪ್ರತಿಕ್ರಿಯಾತ್ಮಕ",
+                feature2Desc: "ಎಲ್ಲಾ ಸಾಧನಗಳಲ್ಲಿ ಮೃದುವಾಗಿ ಕಾರ್ಯನಿರ್ವಹಿಸುವ ಸುಂದರ ವಿನ್ಯಾಸ.",
+                feature3Title: "ಸುರಕ್ಷಿತ ಮತ್ತು ಖಾಸಗಿ",
+                feature3Desc: "ನಿಮ್ಮ ಡೇಟಾ ನಿಮ್ಮೊಂದಿಗೆ ಉಳಿಯುತ್ತದೆ. ಎಲ್ಲಾ ಲೆಕ್ಕಾಚಾರಗಳು ಸ್ಥಳೀಯವಾಗಿ ಸಂಭವಿಸುತ್ತವೆ.",
+                aboutTitle: "ನಮ್ಮ ಬಗ್ಗೆ",
+                aboutDesc1: "ಪ್ರವೇಶಿಸಬಹುದಾದ ಡಿಜಿಟಲ್ ಸಾಧನಗಳನ್ನು ರಚಿಸಲು ನಾವು ಸಮರ್ಪಿತರಾಗಿದ್ದೇವೆ.",
+                aboutDesc2: "ಉನ್ನತ-ಗುಣಮಟ್ಟದ ಅಪ್ಲಿಕೇಶನ್‌ಗಳನ್ನು ಒದಗಿಸುವುದು ನಮ್ಮ ಮಿಷನ್.",
+                aboutDesc3: "ನಾವು ರಚಿಸುವ ಪ್ರತಿಯೊಂದು ಸಾಧನವನ್ನು ಕಾಳಜಿಯಿಂದ ವಿನ್ಯಾಸಗೊಳಿಸಲಾಗಿದೆ.",
+                statLang: "ಭಾಷೆಗಳು",
+                statFree: "ಉಚಿತ",
+                statAvailable: "ಲಭ್ಯವಿದೆ",
+                toolsTitle: "ನಮ್ಮ ಸಾಧನಗಳು",
+                toolsDesc: "ನಿಮ್ಮ ಜೀವನವನ್ನು ಸುಲಭಗೊಳಿಸಲು ವಿನ್ಯಾಸಗೊಳಿಸಿದ ಶಕ್ತಿಶಾಲಿ ಉಪಯುಕ್ತತೆಗಳು",
+                calcTitle: "ಬಹುಭಾಷಾ ಕ್ಯಾಲ್ಕುಲೇಟರ್",
+                calcDesc: "6 ಭಾಷೆಗಳಲ್ಲಿ ಸಂಖ್ಯೆ-ಪದ ಅನುವಾದದೊಂದಿಗೆ ಸುಧಾರಿತ ಕ್ಯಾಲ್ಕುಲೇಟರ್.",
+                calcBadge: "ಈಗ ಲಭ್ಯವಿದೆ",
+                tool2Title: "ಪಾಸ್ವರ್ಡ್.....",
+                tool2Desc: "ಶೀಘ್ರದಲ್ಲೇ ಬರಲಿದೆ!",
+                tool2Badge: "ಶೀಘ್ರದಲ್ಲೇ ಬರಲಿದೆ!",
+                tool3Title: "ಸಮಯ ವಲಯ.....",
+                tool3Desc: "ಶೀಘ್ರದಲ್ಲೇ ಬರಲಿದೆ!",
+                tool3Badge: "ಶೀಘ್ರದಲ್ಲೇ ಬರಲಿದೆ!",
+                contactTitle: "ಸಂಪರ್ಕದಲ್ಲಿರಿ",
+                contactSubtitle: "ನಿಮ್ಮಿಂದ ಕೇಳಲು ನಾವು ಇಷ್ಟಪಡುತ್ತೇವೆ!",
+                labelName: "ಹೆಸರು",
+                labelEmail: "ಇಮೇಲ್",
+                labelMessage: "ಸಂದೇಶ",
+                submitBtn: "ಸಂದೇಶ ಕಳುಹಿಸಿ",
+                emailTitle: "ಇಮೇಲ್",
+                phoneTitle: "ಫೋನ್",
+                socialTitle: "ಸಾಮಾಜಿಕ ಮಾಧ್ಯಮ",
+                socialDesc: "ಸಾಮಾಜಿಕ ವೇದಿಕೆಗಳಲ್ಲಿ ನಮ್ಮೊಂದಿಗೆ ಸಂಪರ್ಕ ಸಾಧಿಸಿ",
+                footerText: "© 2025 ಭಾಷಾನೆಕ್ಸ್ಟ್. ಎಲ್ಲಾ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.",
+                footerMade: "ಬಹುಭಾಷಾ ಸಮುದಾಯಕ್ಕಾಗಿ ❤️ ನೊಂದಿಗೆ ತಯಾರಿಸಲಾಗಿದೆ"
+            },
+            ml: {
+                titleText: "ഭാഷാനെക്സ്റ്റ്",
+                logoText: "ഭാഷാനെക്സ്റ്റ്",
+                navHome: "ഹോം",
+                navAbout: "ഞങ്ങളെക്കുറിച്ച്",
+                navTools: "ഉപകരണങ്ങൾ",
+                navVersion: "പതിപ്പ്",
+                navContact: "ബന്ധപ്പെടുക",
+                subCalc: "🔢 ബഹുഭാഷാ കാൽക്കുലേറ്റർ",
+                subTool2: "🔐 പാസ്‌വേഡ്.....",
+                subTool3: "🌍 സമയമേഖല.....",
+                heroTitle: "ഞങ്ങളുടെ പ്ലാറ്റ്ഫോമിലേക്ക് സ്വാഗതം",
+                heroDesc: "എല്ലാവർക്കുമായി രൂപകൽപ്പന ചെയ്ത ബഹുഭാഷാ ഡിജിറ്റൽ ഉപകരണങ്ങളുടെ ശക്തി അനുഭവിക്കൂ",
+                heroBtn: "ഉപകരണങ്ങൾ പര്യവേക്ഷണം ചെയ്യുക",
+                quickToolsTitle: "ലഭ്യമായ ഉപകരണങ്ങൾ",
+                quickCalcTitle: "ബഹുഭാഷാ കാൽക്കുലേറ്റർ",
+                quickCalcDesc: "സംഖ്യ വിവർത്തനത്തോടുകൂടിയ വിപുലമായ കാൽക്കുലേറ്റർ",
+                quickTool2Title: "പാസ്‌വേഡ്.....",
+                quickTool2Desc: "ഉടൻ വരുന്നു!",
+                quickTool3Title: "സമയമേഖല.....",
+                quickTool3Desc: "ഉടൻ വരുന്നു!",
+                feature1Title: "ബഹുഭാഷാ പിന്തുണ",
+                feature1Desc: "6 വ്യത്യസ്ത ഭാഷകളിൽ ഞങ്ങളുടെ പ്ലാറ്റ്ഫോം ആക്സസ് ചെയ്യുക.",
+                feature2Title: "വേഗമേറിയതും പ്രതികരിക്കുന്നതും",
+                feature2Desc: "എല്ലാ ഉപകരണങ്ങളിലും തടസ്സമില്ലാതെ പ്രവർത്തിക്കുന്ന മനോഹരമായ ഡിസൈൻ.",
+                feature3Title: "സുരക്ഷിതവും സ്വകാര്യവും",
+                feature3Desc: "നിങ്ങളുടെ ഡാറ്റ നിങ്ങളോടൊപ്പം തന്നെ നിലനിൽക്കുന്നു. എല്ലാ കണക്കുകൂട്ടലുകളും പ്രാദേശികമായി സംഭവിക്കുന്നു.",
+                aboutTitle: "ഞങ്ങളെക്കുറിച്ച്",
+                aboutDesc1: "ആക്സസ് ചെയ്യാവുന്ന ഡിജിറ്റൽ ഉപകരണങ്ങൾ സൃഷ്ടിക്കുന്നതിന് ഞങ്ങൾ സമർപ്പിതരാണ്.",
+                aboutDesc2: "ഉയർന്ന നിലവാരമുള്ള ആപ്ലിക്കേഷനുകൾ നൽകുക എന്നതാണ് ഞങ്ങളുടെ ദൗത്യം.",
+                aboutDesc3: "ഞങ്ങൾ സൃഷ്ടിക്കുന്ന ഓരോ ഉപകരണവും ശ്രദ്ധയോടെ രൂപകൽപ്പന ചെയ്തിരിക്കുന്നു.",
+                statLang: "ഭാഷകൾ",
+                statFree: "സൗജന്യം",
+                statAvailable: "ലഭ്യമാണ്",
+                toolsTitle: "ഞങ്ങളുടെ ഉപകരണങ്ങൾ",
+                toolsDesc: "നിങ്ങളുടെ ജീവിതം എളുപ്പമാക്കാൻ രൂപകൽപ്പന ചെയ്ത ശക്തമായ യൂട്ടിലിറ്റികൾ",
+                calcTitle: "ബഹുഭാഷാ കാൽക്കുലേറ്റർ",
+                calcDesc: "6 ഭാഷകളിൽ സംഖ്യ-മുതൽ-വാക്ക് വിവർത്തനത്തോടുകൂടിയ വിപുലമായ കാൽക്കുലേറ്റർ.",
+                calcBadge: "ഇപ്പോൾ ലഭ്യമാണ്",
+                tool2Title: "പാസ്‌വേഡ്.....",
+                tool2Desc: "ഉടൻ വരുന്നു!",
+                tool2Badge: "ഉടൻ വരുന്നു!",
+                tool3Title: "സമയമേഖല.....",
+                tool3Desc: "ഉടൻ വരുന്നു!",
+                tool3Badge: "ഉടൻ വരുന്നു!",
+                contactTitle: "ബന്ധപ്പെടുക",
+                contactSubtitle: "നിങ്ങളിൽ നിന്ന് കേൾക്കാൻ ഞങ്ങൾ ആഗ്രഹിക്കുന്നു!",
+                labelName: "പേര്",
+                labelEmail: "ഇമെയിൽ",
+                labelMessage: "സന്ദേശം",
+                submitBtn: "സന്ദേശം അയയ്ക്കുക",
+                emailTitle: "ഇമെയിൽ",
+                phoneTitle: "ഫോൺ",
+                socialTitle: "സോഷ്യൽ മീഡിയ",
+                socialDesc: "സോഷ്യൽ പ്ലാറ്റ്ഫോമുകളിൽ ഞങ്ങളുമായി ബന്ധപ്പെടുക",
+                footerText: "© 2025 ഭാഷാനെക്സ്റ്റ്. എല്ലാ അവകാശങ്ങളും നിക്ഷിപ്തം.",
+                footerMade: "ബഹുഭാഷാ സമൂഹത്തിനായി ❤️ ഉപയോഗിച്ച് നിർമ്മിച്ചത്"
+            }
+        };
+
+        let currentLang = 'en';
+
+        function updateLanguage(lang) {
+            currentLang = lang;
+            const t = translations[lang];
+            
+            Object.keys(t).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.textContent = t[key];
+                }
+            });
+        }
+
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            const link = item.querySelector('.nav-link-with-sub');
+            if (link) {
+                link.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        item.classList.toggle('show-mobile');
+                    }
+                });
+            }
+        });
+
+        const heroBtn = document.getElementById('heroBtn');
+        const toolsQuickAccess = document.getElementById('toolsQuickAccess');
+        
+        heroBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            toolsQuickAccess.classList.toggle('expanded');
+            if (toolsQuickAccess.classList.contains('expanded')) {
+                setTimeout(() => {
+                    toolsQuickAccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }
+        });
+
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        const navLinks = document.querySelectorAll('.nav-link[data-page]');
+        const pages = document.querySelectorAll('.page');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetPage = link.getAttribute('data-page');
+                navLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                pages.forEach(page => page.classList.remove('active'));
+                document.getElementById(targetPage).classList.add('active');
+                if (window.innerWidth <= 768) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        const langBtn = document.getElementById('langBtn');
+        const langDropdown = document.getElementById('langDropdown');
+        
+        langBtn.addEventListener('click', () => {
+            langDropdown.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!langBtn.contains(e.target) && !langDropdown.contains(e.target)) {
+                langDropdown.classList.remove('show');
+            }
+        });
+
+        const langOptions = document.querySelectorAll('.lang-option');
+        const currentLangDisplay = document.getElementById('currentLang');
+        langOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const lang = option.getAttribute('data-lang');
+                updateLanguage(lang);
+                langDropdown.classList.remove('show');
+                currentLangDisplay.textContent = option.textContent;
+                langDropdown.classList.remove('show');
+            });
+        });
+    </script>
+</body>
+</html>

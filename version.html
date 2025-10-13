@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Version History - Multilingual Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --light-bg: rgba(255, 255, 255, 0.95);
+            --text-dark: #2d3748;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .language-selector {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .lang-btn {
+            padding: 10px 20px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .lang-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .hero {
+            background: var(--light-bg);
+            border-radius: 30px;
+            padding: 80px 60px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            color: #666;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .version-content {
+            background: var(--light-bg);
+            border-radius: 30px;
+            padding: 60px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .version-content h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--primary-gradient);
+        }
+
+        .version-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 50px;
+        }
+
+        .version-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .version-marker {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: var(--secondary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.2em;
+            box-shadow: 0 6px 20px rgba(240, 147, 251, 0.4);
+            z-index: 1;
+        }
+
+        .version-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .version-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .version-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .version-number {
+            font-size: 1.8em;
+            font-weight: bold;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .version-description {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.1em;
+            margin-top: 15px;
+        }
+
+        .version-features {
+            margin-top: 25px;
+        }
+
+        .version-features h4 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-item {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .feature-item::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+
+        footer p {
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 50px 30px;
+            }
+
+            .hero h1 {
+                font-size: 2.2em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .version-content {
+                padding: 40px 30px;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .version-item {
+                padding-left: 60px;
+            }
+
+            .version-marker {
+                width: 40px;
+                height: 40px;
+                font-size: 1em;
+            }
+
+            .version-number {
+                font-size: 1.5em;
+            }
+
+            .version-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8em;
+            }
+
+            .version-content h2 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="language-selector">
+            <button class="lang-btn active" data-lang="en">English</button>
+            <button class="lang-btn" data-lang="hi">हिंदी</button>
+            <button class="lang-btn" data-lang="te">తెలుగు</button>
+            <button class="lang-btn" data-lang="ta">தமிழ்</button>
+            <button class="lang-btn" data-lang="kn">ಕನ್ನಡ</button>
+            <button class="lang-btn" data-lang="ml">മലയാളം</button>
+        </div>
+
+        <div class="hero">
+            <h1 id="heroTitle">Version History</h1>
+            <p id="heroDesc">Track the evolution of our platform as we continuously improve and add new features to serve you better. Each version represents our commitment to delivering exceptional multilingual digital tools.</p>
+        </div>
+
+        <div class="version-content">
+            <h2 id="versionTitle">Release Timeline</h2>
+            
+            <div class="timeline">
+                <div class="version-item">
+                    <div class="version-marker">v1.0</div>
+                    <div class="version-card">
+                        <div class="version-header">
+                            <span class="version-number" id="v1Number">Version 1.0</span>
+                        </div>
+                        <div class="version-description" id="v1Desc">
+                            The inaugural release of our Multilingual Platform marks the beginning of our journey to break language barriers in digital tools. This foundational version establishes our core infrastructure and delivers our first fully functional tool to serve diverse linguistic communities across India.
+                        </div>
+                        <div class="version-features">
+                            <h4 id="v1FeaturesTitle">Key Features</h4>
+                            <ul class="feature-list">
+                                <li class="feature-item" id="v1Feature1">
+                                    <strong>Multilingual Calculator:</strong> Our flagship tool provides advanced calculation capabilities with seamless number-to-word translation across six Indian languages - English, Hindi, Telugu, Tamil, Kannada, and Malayalam. The calculator features a beautiful, responsive interface that makes complex calculations intuitive and accessible. Perfect for education, business, and daily use, it bridges the gap between numerical literacy and linguistic preference, ensuring everyone can work with numbers in their mother tongue.
+                                </li>
+                                <li class="feature-item" id="v1Feature2">
+                                    <strong id="v1Feature2Title">Complete Platform Infrastructure:</strong> <span id="v1Feature2Desc">Built with modern web technologies featuring responsive design, smooth animations, and intuitive navigation</span>
+                                </li>
+                                <li class="feature-item" id="v1Feature3">
+                                    <strong id="v1Feature3Title">Six Language Support:</strong> <span id="v1Feature3Desc">Full multilingual interface supporting English, Hindi, Telugu, Tamil, Kannada, and Malayalam</span>
+                                </li>
+                                <li class="feature-item" id="v1Feature4">
+                                    <strong id="v1Feature4Title">Privacy-First Design:</strong> <span id="v1Feature4Desc">All calculations and operations happen locally in the browser with no data collection</span>
+                                </li>
+                                <li class="feature-item" id="v1Feature5">
+                                    <strong id="v1Feature5Title">Mobile-Responsive:</strong> <span id="v1Feature5Desc">Seamless experience across desktop, tablet, and mobile devices</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p id="footerText">© 2025 Multilingual Platform. All rights reserved.</p>
+        <p id="footerMade">Made with ❤️ for the multilingual community</p>
+    </footer>
+
+    <script>
+        const translations = {
+            en: {
+                heroTitle: "Version History",
+                heroDesc: "Track the evolution of our platform as we continuously improve and add new features to serve you better. Each version represents our commitment to delivering exceptional multilingual digital tools.",
+                versionTitle: "Release Timeline",
+                v1Number: "Version 1.0",
+                v1Desc: "The inaugural release of our Multilingual Platform marks the beginning of our journey to break language barriers in digital tools. This foundational version establishes our core infrastructure and delivers our first fully functional tool to serve diverse linguistic communities across India.",
+                v1FeaturesTitle: "Key Features",
+                v1Feature1: "Multilingual Calculator: Our flagship tool provides advanced calculation capabilities with seamless number-to-word translation across six Indian languages - English, Hindi, Telugu, Tamil, Kannada, and Malayalam. The calculator features a beautiful, responsive interface that makes complex calculations intuitive and accessible. Perfect for education, business, and daily use, it bridges the gap between numerical literacy and linguistic preference, ensuring everyone can work with numbers in their mother tongue.",
+                v1Feature2Title: "Complete Platform Infrastructure:",
+                v1Feature2Desc: "Built with modern web technologies featuring responsive design, smooth animations, and intuitive navigation",
+                v1Feature3Title: "Six Language Support:",
+                v1Feature3Desc: "Full multilingual interface supporting English, Hindi, Telugu, Tamil, Kannada, and Malayalam",
+                v1Feature4Title: "Privacy-First Design:",
+                v1Feature4Desc: "All calculations and operations happen locally in the browser with no data collection",
+                v1Feature5Title: "Mobile-Responsive:",
+                v1Feature5Desc: "Seamless experience across desktop, tablet, and mobile devices",
+                footerText: "© 2025 Multilingual Platform. All rights reserved.",
+                footerMade: "Made with ❤️ for the multilingual community"
+            },
+            hi: {
+                heroTitle: "संस्करण इतिहास",
+                heroDesc: "हमारे प्लेटफॉर्म के विकास को ट्रैक करें क्योंकि हम आपको बेहतर सेवा देने के लिए लगातार सुधार और नई सुविधाएं जोड़ते हैं। प्रत्येक संस्करण असाधारण बहुभाषी डिजिटल टूल प्रदान करने की हमारी प्रतिबद्धता का प्रतिनिधित्व करता है।",
+                versionTitle: "रिलीज़ समयरेखा",
+                v1Number: "संस्करण 1.0",
+                v1Desc: "हमारे बहुभाषी मंच का उद्घाटन रिलीज डिजिटल टूल में भाषा बाधाओं को तोड़ने की हमारी यात्रा की शुरुआत का प्रतीक है। यह बुनियादी संस्करण हमारे मुख्य बुनियादी ढांचे को स्थापित करता है और भारत भर में विविध भाषाई समुदायों की सेवा के लिए हमारा पहला पूरी तरह कार्यात्मक उपकरण प्रदान करता है।",
+                v1FeaturesTitle: "मुख्य विशेषताएं",
+                v1Feature1: "बहुभाषी कैलकुलेटर: हमारा प्रमुख उपकरण छह भारतीय भाषाओं - अंग्रेजी, हिंदी, तेलुगु, तमिल, कन्नड़ और मलयालम में निर्बाध संख्या-से-शब्द अनुवाद के साथ उन्नत गणना क्षमताएं प्रदान करता है। कैलकुलेटर में एक सुंदर, उत्तरदायी इंटरफ़ेस है जो जटिल गणनाओं को सहज और सुलभ बनाता है। शिक्षा, व्यवसाय और दैनिक उपयोग के लिए बिल्कुल सही।",
+                v1Feature2Title: "पूर्ण प्लेटफॉर्म बुनियादी ढांचा:",
+                v1Feature2Desc: "उत्तरदायी डिज़ाइन, सहज एनिमेशन और सहज नेविगेशन की सुविधा वाली आधुनिक वेब तकनीकों के साथ निर्मित",
+                v1Feature3Title: "छह भाषा समर्थन:",
+                v1Feature3Desc: "अंग्रेजी, हिंदी, तेलुगु, तमिल, कन्नड़ और मलयालम का समर्थन करने वाला पूर्ण बहुभाषी इंटरफ़ेस",
+                v1Feature4Title: "गोपनीयता-प्रथम डिज़ाइन:",
+                v1Feature4Desc: "सभी गणनाएं और संचालन स्थानीय रूप से ब्राउज़र में बिना डेटा संग्रह के होते हैं",
+                v1Feature5Title: "मोबाइल-उत्तरदायी:",
+                v1Feature5Desc: "डेस्कटॉप, टैबलेट और मोबाइल उपकरणों पर निर्बाध अनुभव",
+                footerText: "© 2025 बहुभाषी मंच। सर्वाधिकार सुरक्षित।",
+                footerMade: "बहुभाषी समुदाय के लिए ❤️ के साथ बनाया गया"
+            },
+            te: {
+                heroTitle: "వెర్షన్ చరిత్ర",
+                heroDesc: "మేము మిమ్మల్ని మెరుగ్గా సేవ చేయడానికి నిరంతరం మెరుగుపరుస్తూ కొత్త ఫీచర్లను జోడిస్తున్నప్పుడు మా ప్లాట్‌ఫారమ్ పరిణామాన్ని ట్రాక్ చేయండి।",
+                versionTitle: "విడుదల కాలక్రమం",
+                v1Number: "వెర్షన్ 1.0",
+                v1Desc: "మా బహుభాషా వేదిక ప్రారంభ విడుదల డిజిటల్ సాధనాలలో భాషా అడ్డంకులను విచ్ఛిన్నం చేయడానికి మా ప్రయాణం ప్రారంభాన్ని సూచిస్తుంది।",
+                v1FeaturesTitle: "ముఖ్య ఫీచర్లు",
+                v1Feature1: "బహుభాషా కాలిక్యులేటర్: ఆరు భారతీయ భాషలలో సంఖ్య-నుండి-పదం అనువాదంతో అధునాతన గణన సామర్థ్యాలను అందిస్తుంది।",
+                v1Feature2Title: "పూర్తి ప్లాట్‌ఫారమ్ మౌలిక సదుపాయాలు:",
+                v1Feature2Desc: "ఆధునిక వెబ్ టెక్నాలజీలతో నిర్మించబడింది",
+                v1Feature3Title: "ఆరు భాషా మద్దతు:",
+                v1Feature3Desc: "పూర్తి బహుభాషా ఇంటర్‌ఫేస్",
+                v1Feature4Title: "గోప్యత-మొదటి డిజైన్:",
+                v1Feature4Desc: "స్థానికంగా బ్రౌజర్‌లో జరుగుతాయి",
+                v1Feature5Title: "మొబైల్-రెస్పాన్సివ్:",
+                v1Feature5Desc: "అన్ని పరికరాలలో సజావైన అనుభవం",
+                footerText: "© 2025 బహుభాషా వేదిక",
+                footerMade: "❤️తో తయారు చేయబడింది"
+            },
+            ta: {
+                heroTitle: "பதிப்பு வரலாறு",
+                heroDesc: "எங்கள் தளத்தின் பரிணாம வளர்ச்சியைக் கண்காணிக்கவும்।",
+                versionTitle: "வெளியீட்டு காலவரிசை",
+                v1Number: "பதிப்பு 1.0",
+                v1Desc: "எங்கள் பன்மொழி தளத்தின் தொடக்க வெளியீடு டிஜிட்டல் கருவிகளில் மொழி தடைகளை உடைக்கிறது।",
+                v1FeaturesTitle: "முக்கிய அம்சங்கள்",
+                v1Feature1: "பன்மொழி கால்குலேட்டர்: ஆறு இந்திய மொழிகளில் எண் மொழிபெயர்ப்புடன் கணக்கீடுகள்।",
+                v1Feature2Title: "முழுமையான தள உள்கட்டமைப்பு:",
+                v1Feature2Desc: "நவீன வலை தொழில்நுட்பங்களுடன் உருவாக்கப்பட்டது",
+                v1Feature3Title: "ஆறு மொழி ஆதரவு:",
+                v1Feature3Desc: "முழு பன்மொழி இடைமுகம்",
+                v1Feature4Title: "தனியுரிமை-முதல் வடிவமைப்பு:",
+                v1Feature4Desc: "உள்ளூரில் நடக்கின்றன",
+                v1Feature5Title: "மொபைல்-பதிலளிக்கக்கூடிய:",
+                v1Feature5Desc: "எல்லா சாதனங்களிலும் தடையற்ற அனுபவம்",
+                footerText: "© 2025 பன்மொழி தளம்",
+                footerMade: "❤️ உடன் உருவாக்கப்பட்டது"
+            },
+            kn: {
+                heroTitle: "ಆವೃತ್ತಿ ಇತಿಹಾಸ",
+                heroDesc: "ನಮ್ಮ ವೇದಿಕೆಯ ವಿಕಸನವನ್ನು ಟ್ರ್ಯಾಕ್ ಮಾಡಿ।",
+                versionTitle: "ಬಿಡುಗಡೆ ಟೈಮ್‌ಲೈನ್",
+                v1Number: "ಆವೃತ್ತಿ 1.0",
+                v1Desc: "ನಮ್ಮ ಬಹುಭಾಷಾ ವೇದಿಕೆಯ ಉದ್ಘಾಟನಾ ಬಿಡುಗಡೆ ಡಿಜಿಟಲ್ ಸಾಧನಗಳಲ್ಲಿ ಭಾಷಾ ಅಡೆತಡೆಗಳನ್ನು ಮುರಿಯುತ್ತದೆ।",
+                v1FeaturesTitle: "ಪ್ರಮುಖ ವೈಶಿಷ್ಟ್ಯಗಳು",
+                v1Feature1: "ಬಹುಭಾಷಾ ಕ್ಯಾಲ್ಕ್ಯುಲೇಟರ್: ಆರು ಭಾರತೀಯ ಭಾಷೆಗಳಲ್ಲಿ ಸಂಖ್ಯೆ ಅನುವಾದದೊಂದಿಗೆ ಲೆಕ್ಕಾಚಾರಗಳು।",
+                v1Feature2Title: "ಸಂಪೂರ್ಣ ವೇದಿಕೆ ಮೂಲಸೌಕರ್ಯ:",
+                v1Feature2Desc: "ಆಧುನಿಕ ವೆಬ್ ತಂತ್ರಜ್ಞಾನಗಳೊಂದಿಗೆ ನಿರ್ಮಿಸಲಾಗಿದೆ",
+                v1Feature3Title: "ಆರು ಭಾಷಾ ಬೆಂಬಲ:",
+                v1Feature3Desc: "ಸಂಪೂರ್ಣ ಬಹುಭಾಷಾ ಇಂಟರ್‌ಫೇಸ್",
+                v1Feature4Title: "ಗೌಪ್ಯತೆ-ಮೊದಲ ವಿನ್ಯಾಸ:",
+                v1Feature4Desc: "ಸ್ಥಳೀಯವಾಗಿ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ನಡೆಯುತ್ತವೆ",
+                v1Feature5Title: "ಮೊಬೈಲ್-ಪ್ರತಿಕ್ರಿಯಾತ್ಮಕ:",
+                v1Feature5Desc: "ಎಲ್ಲಾ ಸಾಧನಗಳಲ್ಲಿ ತಡೆರಹಿತ ಅನುಭವ",
+                footerText: "© 2025 ಬಹುಭಾಷಾ ವೇದಿಕೆ",
+                footerMade: "❤️ ನೊಂದಿಗೆ ತಯಾರಿಸಲಾಗಿದೆ"
+            },
+            ml: {
+                heroTitle: "പതിപ്പ് ചരിത്രം",
+                heroDesc: "ഞങ്ങളുടെ പ്ലാറ്റ്ഫോമിന്റെ പരിണാമം ട്രാക്ക് ചെയ്യുക।",
+                versionTitle: "റിലീസ് ടൈംലൈൻ",
+                v1Number: "പതിപ്പ് 1.0",
+                v1Desc: "ഞങ്ങളുടെ ബഹുഭാഷാ പ്ലാറ്റ്ഫോമിന്റെ ഉദ്ഘാടന പ്രകാശനം ഡിജിറ്റൽ ഉപകരണങ്ങളിലെ ഭാഷാ തടസ്സങ്ങൾ തകർക്കുന്നു।",
+                v1FeaturesTitle: "പ്രധാന സവിശേഷതകൾ",
+                v1Feature1: "ബഹുഭാഷാ കാൽക്കുലേറ്റർ: ആറ് ഇന്ത്യൻ ഭാഷകളിൽ സംഖ്യ വിവർത്തനത്തോടുകൂടിയ കണക്കുകൂട്ടലുകൾ।",
+                v1Feature2Title: "സമ്പൂർണ്ണ പ്ലാറ്റ്ഫോം അടിസ്ഥാന സൗകര്യങ്ങൾ:",
+                v1Feature2Desc: "ആധുനിക വെബ് സാങ്കേതികവിദ്യകൾ ഉപയോഗിച്ച് നിർമ്മിച്ചത്",
+                v1Feature3Title: "ആറ് ഭാഷാ പിന്തുണ:",
+                v1Feature3Desc: "പൂർണ്ണ ബഹുഭാഷാ ഇന്റർഫേസ്",
+                v1Feature4Title: "സ്വകാര്യത-ആദ്യ ഡിസൈൻ:",
+                v1Feature4Desc: "ബ്രൗസറിൽ പ്രാദേശികമായി സംഭവിക്കുന്നു",
+                v1Feature5Title: "മൊബൈൽ-പ്രതികരിക്കുന്ന:",
+                v1Feature5Desc: "എല്ലാ ഉപകരണങ്ങളിലും തടസ്സമില്ലാത്ത അനുഭവം",
+                footerText: "© 2025 ബഹുഭാഷാ പ്ലാറ്റ്ഫോം",
+                footerMade: "❤️ ഉപയോഗിച്ച് നിർമ്മിച്ചത്"
+            }
+        };
+
+        function changeLanguage(lang) {
+            const t = translations[lang];
+            
+            // Update all text elements
+            Object.keys(t).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.textContent = t[key];
+                }
+            });
+            
+            // Update active button state
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // Add event listeners to language buttons
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                changeLanguage(btn.dataset.lang);
+            });
+        });
+    </script>
+</body>
+</html>
