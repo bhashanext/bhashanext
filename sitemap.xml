@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    
+    <!-- Homepage - Highest Priority -->
+    <url>
+        <loc>https://bhashanext.github.io/bhashanext/</loc>
+        <lastmod>2025-01-13</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        <!-- Alternate language versions -->
+        <xhtml:link rel="alternate" hreflang="en" href="https://bhashanext.github.io/bhashanext/?lang=en"/>
+        <xhtml:link rel="alternate" hreflang="hi" href="https://bhashanext.github.io/bhashanext/?lang=hi"/>
+        <xhtml:link rel="alternate" hreflang="te" href="https://bhashanext.github.io/bhashanext/?lang=te"/>
+        <xhtml:link rel="alternate" hreflang="ta" href="https://bhashanext.github.io/bhashanext/?lang=ta"/>
+        <xhtml:link rel="alternate" hreflang="kn" href="https://bhashanext.github.io/bhashanext/?lang=kn"/>
+        <xhtml:link rel="alternate" hreflang="ml" href="https://bhashanext.github.io/bhashanext/?lang=ml"/>
+    </url>
+    
+    <!-- Multilingual Calculator Tool - Very High Priority -->
+    <url>
+        <loc>https://bhashanext.github.io/bhashanext/tools/calculator.html</loc>
+        <lastmod>2025-01-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bhashanext.github.io/bhashanext/tools/calculator.html?lang=en"/>
+        <xhtml:link rel="alternate" hreflang="hi" href="https://bhashanext.github.io/bhashanext/tools/calculator.html?lang=hi"/>
+        <xhtml:link rel="alternate" hreflang="te" href="https://bhashanext.github.io/bhashanext/tools/calculator.html?lang=te"/>
+        <xhtml:link rel="alternate" hreflang="ta" href="https://bhashanext.github.io/bhashanext/tools/calculator.html?lang=ta"/>
+        <xhtml:link rel="alternate" hreflang="kn" href="https://bhashanext.github.io/bhashanext/tools/calculator.html?lang=kn"/>
+        <xhtml:link rel="alternate" hreflang="ml" href="https://bhashanext.github.io/bhashanext/tools/calculator.html?lang=ml"/>
+    </url>
+    
+    <!-- Version History Page - Medium Priority -->
+    <url>
+        <loc>https://bhashanext.github.io/bhashanext/version.html</loc>
+        <lastmod>2025-01-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bhashanext.github.io/bhashanext/version.html?lang=en"/>
+        <xhtml:link rel="alternate" hreflang="hi" href="https://bhashanext.github.io/bhashanext/version.html?lang=hi"/>
+        <xhtml:link rel="alternate" hreflang="te" href="https://bhashanext.github.io/bhashanext/version.html?lang=te"/>
+        <xhtml:link rel="alternate" hreflang="ta" href="https://bhashanext.github.io/bhashanext/version.html?lang=ta"/>
+        <xhtml:link rel="alternate" hreflang="kn" href="https://bhashanext.github.io/bhashanext/version.html?lang=kn"/>
+        <xhtml:link rel="alternate" hreflang="ml" href="https://bhashanext.github.io/bhashanext/version.html?lang=ml"/>
+    </url>
+    
+    <!-- About Page (accessed via index.html#about) - Medium Priority -->
+    <url>
+        <loc>https://bhashanext.github.io/bhashanext/#about</loc>
+        <lastmod>2025-01-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bhashanext.github.io/bhashanext/#about?lang=en"/>
+        <xhtml:link rel="alternate" hreflang="hi" href="https://bhashanext.github.io/bhashanext/#about?lang=hi"/>
+        <xhtml:link rel="alternate" hreflang="te" href="https://bhashanext.github.io/bhashanext/#about?lang=te"/>
+        <xhtml:link rel="alternate" hreflang="ta" href="https://bhashanext.github.io/bhashanext/#about?lang=ta"/>
+        <xhtml:link rel="alternate" hreflang="kn" href="https://bhashanext.github.io/bhashanext/#about?lang=kn"/>
+        <xhtml:link rel="alternate" hreflang="ml" href="https://bhashanext.github.io/bhashanext/#about?lang=ml"/>
+    </url>
+    
+    <!-- Contact Page (accessed via index.html#contact) - Medium Priority -->
+    <url>
+        <loc>https://bhashanext.github.io/bhashanext/#contact</loc>
+        <lastmod>2025-01-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bhashanext.github.io/bhashanext/#contact?lang=en"/>
+        <xhtml:link rel="alternate" hreflang="hi" href="https://bhashanext.github.io/bhashanext/#contact?lang=hi"/>
+        <xhtml:link rel="alternate" hreflang="te" href="https://bhashanext.github.io/bhashanext/#contact?lang=te"/>
+        <xhtml:link rel="alternate" hreflang="ta" href="https://bhashanext.github.io/bhashanext/#contact?lang=ta"/>
+        <xhtml:link rel="alternate" hreflang="kn" href="https://bhashanext.github.io/bhashanext/#contact?lang=kn"/>
+        <xhtml:link rel="alternate" hreflang="ml" href="https://bhashanext.github.io/bhashanext/#contact?lang=ml"/>
+    </url>
+    
+    <!-- Tools Landing Page (accessed via index.html#tools) -->
+    <url>
+        <loc>https://bhashanext.github.io/bhashanext/#tools</loc>
+        <lastmod>2025-01-13</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bhashanext.github.io/bhashanext/#tools?lang=en"/>
+        <xhtml:link rel="alternate" hreflang="hi" href="https://bhashanext.github.io/bhashanext/#tools?lang=hi"/>
+        <xhtml:link rel="alternate" hreflang="te" href="https://bhashanext.github.io/bhashanext/#tools?lang=te"/>
+        <xhtml:link rel="alternate" hreflang="ta" href="https://bhashanext.github.io/bhashanext/#tools?lang=ta"/>
+        <xhtml:link rel="alternate" hreflang="kn" href="https://bhashanext.github.io/bhashanext/#tools?lang=kn"/>
+        <xhtml:link rel="alternate" hreflang="ml" href="https://bhashanext.github.io/bhashanext/#tools?lang=ml"/>
+    </url>
+    
+</urlset>

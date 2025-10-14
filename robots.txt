@@ -1,0 +1,16 @@
+# robots.txt for BhashaNext - Multilingual Platform
+
+User-agent: *
+Allow: /
+Allow: /tools/
+Allow: /tools/calculator.html
+
+# Disallow admin or sensitive areas (add as needed)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Sitemap location
+Sitemap: https://bhashanext.github.io/bhashanext/sitemap.xml
+
+# Crawl delay (optional - prevents overloading server)
+Crawl-delay: 1
