@@ -4,6 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title class="logo" id="titleText">BhashaNext</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Free multilingual tools with number-to-word translation in Hindi, Telugu, Tamil, Kannada, Malayalam & English. Perfect for students, teachers, and professionals across India.">
+    <meta name="keywords" content="multilingual calculator, Hindi calculator, Telugu calculator, Tamil calculator, Kannada calculator, Malayalam calculator, number to words, Indian language tools, free calculator">
+    <meta name="author" content="BhashaNext">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://bhashanext.github.io/bhashanext/">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bhashanext.github.io/bhashanext/">
+    <meta property="og:title" content="BhashaNext - Free Multilingual Tools">
+    <meta property="og:description" content="Tools in 6 Indian languages with number-to-word translation. 100% free and privacy-focused.">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="BhashaNext - Multilingual Tools">
+    <meta name="twitter:description" content="Free tools in 6 Indian languages">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "BhashaNext Multilingual Tools",
+      "url": "https://bhashanext.com",
+      "description": "Free multilingual tools with number-to-word translation in 6 Indian languages",
+      "applicationCategory": "UtilitiesApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      },
+      "inLanguage": ["en", "hi", "te", "ta", "kn", "ml"]
+    }
+    </script>
+    
     <style>
         * {
             margin: 0;
@@ -745,6 +782,74 @@
             }
         }
 
+        /* SEO Content Section */
+        .seo-content {
+            background: var(--light-bg);
+            border-radius: 30px;
+            padding: 60px;
+            margin: 40px 0;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .seo-content h2 {
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .seo-content h3 {
+            font-size: 1.8em;
+            margin: 30px 0 15px;
+            color: var(--text-dark);
+        }
+
+        .seo-content p {
+            font-size: 1.15em;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .seo-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .seo-content li {
+            padding: 12px 0 12px 35px;
+            position: relative;
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .seo-content li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        @media (max-width: 768px) {
+            .seo-content {
+                padding: 40px 30px;
+            }
+
+            .seo-content h2 {
+                font-size: 2em;
+            }
+
+            .seo-content h3 {
+                font-size: 1.5em;
+            }
+        }
+
         @media (max-width: 480px) {
             .hero h1 {
                 font-size: 1.8em;
@@ -846,6 +951,24 @@
                     <p id="feature3Desc">Your data stays with you. All calculations and operations happen locally in your browser.</p>
                 </div>
             </div>
+            <!-- SEO Content Section -->
+            <div class="seo-content">
+                <h2 id="seoTitle1">Free Multilingual Tools for India</h2>
+                <p id="seoPara1">BhashaNext offers a powerful, free online tools that supports 6 Indian languages - Hindi (हिंदी), Telugu (తెలుగు), Tamil (தமிழ்), Kannada (ಕನ್ನಡ), Malayalam (മലയാളം), and English. Our advanced tools not only performs operations but also translates to your preferred language.</p>
+                
+                <h3 id="seoTitle2">Perfect for Students, Teachers, and Professionals</h3>
+                <p id="seoPara2">Whether you're learning, teaching in regional languages, or need quick tools for business, our multilingual tools makes numbers accessible in your mother tongue. The number-to-word feature helps with writing, understanding, and educational purposes.</p>
+                
+                <h3 id="seoTitle3">Why Choose BhashaNext?</h3>
+                <ul>
+                    <li id="seoPoint1"><strong>100% Free -</strong> No registration, no ads, completely free to use forever</li>
+                    <li id="seoPoint2"><strong>Privacy First -</strong> All calculations and translations happen locally in your browser - we don't collect any data</li>
+                    <li id="seoPoint3"><strong>6 Languages -</strong> Seamlessly switch between English, Hindi, Telugu, Tamil, Kannada, and Malayalam</li>
+                    <li id="seoPoint4"><strong>Number Translation -</strong> See any number written in words in your chosen language</li>
+                    <li id="seoPoint5"><strong>Works Offline -</strong> Once loaded, the tools work without internet connection</li>
+                    <li id="seoPoint6"><strong>Mobile-Friendly -</strong> Responsive design works perfectly on all devices - phones, tablets, and desktops</li>
+                </ul>
+            </div>
         </div>
 
         <div id="about" class="page">
@@ -924,6 +1047,17 @@
         const translations = {
             en: {
                 titleText: "BhashaNext",
+                seoTitle1: "Free Multilingual Tools for India",
+                seoPara1: "BhashaNext offers a powerful, free online tools that supports 6 Indian languages - Hindi (हिंदी), Telugu (తెలుగు), Tamil (தமிழ்), Kannada (ಕನ್ನಡ), Malayalam (മലയാളം), and English. Our advanced tools not only performs operations but also translates to your preferred language.",
+                seoTitle2: "Perfect for Students, Teachers, and Professionals",
+                seoPara2: "Whether you're learning, teaching in regional languages, or need quick tools for business, our multilingual tools makes numbers accessible in your mother tongue. The number-to-word feature helps with writing, understanding, and educational purposes.",
+                seoTitle3: "Why Choose BhashaNext?",
+                seoPoint1: "100% Free - No registration, no ads, completely free to use forever",
+                seoPoint2: "Privacy First - All calculations and translations happen locally in your browser - we don't collect any data",
+                seoPoint3: "6 Languages - Seamlessly switch between English, Hindi, Telugu, Tamil, Kannada, and Malayalam",
+                seoPoint4: "Number Translation - See any number written in words in your chosen language",
+                seoPoint5: "Works Offline - Once loaded, the tools work without internet connection",
+                seoPoint6: "Mobile-Friendly - Responsive design works perfectly on all devices - phones, tablets, and desktops",
                 logoText: "BhashaNext",
                 navHome: "Home",
                 navAbout: "About",
@@ -982,6 +1116,17 @@
             },
             hi: {
                 titleText: "भाषानेक्स्ट",
+                seoTitle1: "भारत के लिए मुफ्त बहुभाषी उपकरण",
+                seoPara1: "भाषानेक्स्ट एक शक्तिशाली, मुफ्त ऑनलाइन उपकरण प्रदान करता है जो 6 भारतीय भाषाओं-हिंदी (हिंदी), तेलुगु (तेलुगु), तमिल (तमिल), कन्नड़ (कन्नड़), मलयालम (मलयालम) और अंग्रेजी का समर्थन करता है। हमारे उन्नत उपकरण न केवल संचालन करते हैं बल्कि आपकी पसंदीदा भाषा में भी अनुवाद करते हैं।",
+                seoTitle2: "छात्रों, शिक्षकों और पेशेवरों के लिए एकदम सही",
+                seoPara2: "चाहे आप सीख रहे हों, क्षेत्रीय भाषाओं में पढ़ा रहे हों, या व्यवसाय के लिए त्वरित उपकरणों की आवश्यकता हो, हमारे बहुभाषी उपकरण आपकी मातृभाषा में संख्याओं को सुलभ बनाते हैं। नंबर-टू-वर्ड सुविधा लेखन, समझ और शैक्षिक उद्देश्यों में मदद करती है।",
+                seoTitle3: "भाषानेक्स्ट को क्यों चुनें?",
+                seoPoint1: "100% मुफ़्त - कोई पंजीकरण नहीं, कोई विज्ञापन नहीं, हमेशा के लिए उपयोग करने के लिए पूरी तरह से मुफ़्त",
+                seoPoint2: "गोपनीयता सबसे पहले - सभी गणनाएँ और अनुवाद आपके ब्राउज़र में स्थानीय रूप से होते हैं-हम कोई डेटा एकत्र नहीं करते हैं",
+                seoPoint3: "6 भाषाएँ - अंग्रेजी, हिंदी, तेलुगु, तमिल, कन्नड़ और मलयालम के बीच निर्बाध रूप से स्विच करें",
+                seoPoint4: "संख्या अनुवाद - अपनी चुनी हुई भाषा में शब्दों में लिखी गई किसी भी संख्या को देखें",
+                seoPoint5: "ऑफ़लाइन काम करता है - एक बार लोड होने के बाद, उपकरण इंटरनेट कनेक्शन के बिना काम करते हैं",
+                seoPoint6: "मोबाइल-अनुकूल - प्रतिक्रियाशील डिजाइन सभी उपकरणों - फोन, टैबलेट और डेस्कटॉप पर पूरी तरह से काम करता है",
                 logoText: "भाषानेक्स्ट",
                 navHome: "होम",
                 navAbout: "हमारे बारे में",
@@ -1040,6 +1185,17 @@
             },
             te: {
                 titleText: "భాషనెక్స్ట్",
+                seoTitle1: "భారతదేశానికి ఉచిత బహుభాషా సాధనాలు",
+                seoPara1: "భాషనెక్స్ట్ 6 భారతీయ భాషలకు మద్దతు ఇచ్చే శక్తివంతమైన, ఉచిత ఆన్లైన్ సాధనాలను అందిస్తుంది - హిందీ (హిందీ), తెలుగు (తెలుగు), తమిళం (తమిళం), కన్నడ (కన్నడ), మలయాళం (మలయాళం) మరియు ఇంగ్లీష్. మా అధునాతన సాధనాలు కార్యకలాపాలను నిర్వహించడమే కాకుండా మీకు ఇష్టమైన భాషకు కూడా అనువదిస్తాయి.",
+                seoTitle2: "విద్యార్థులు, ఉపాధ్యాయులు మరియు నిపుణులకు పర్ఫెక్ట్",
+                seoPara2: "మీరు నేర్చుకున్నా, ప్రాంతీయ భాషలలో బోధిస్తున్నా, లేదా వ్యాపారం కోసం శీఘ్ర సాధనాలు అవసరమైనా, మా బహుభాషా సాధనాలు మీ మాతృభాషలో సంఖ్యలను అందుబాటులో ఉంచుతాయి. నంబర్-టు-వర్డ్ ఫీచర్ రాయడం, అర్థం చేసుకోవడం మరియు విద్యా ప్రయోజనాలకు సహాయపడుతుంది.",
+                seoTitle3: "భాషనెక్స్ట్ ఎందుకు ఎంచుకోవాలి?",
+                seoPoint1: "100% ఉచితం - నమోదు లేదు, ప్రకటనలు లేవు, ఎప్పటికీ ఉపయోగించడానికి పూర్తిగా ఉచితం",
+                seoPoint2: "గోప్యత మొదట - అన్ని గణనలు మరియు అనువాదాలు మీ బ్రౌజర్లో స్థానికంగా జరుగుతాయి-మేము ఏ డేటాను సేకరించము",
+                seoPoint3: "6 భాషలు - ఇంగ్లీష్, హిందీ, తెలుగు, తమిళం, కన్నడ మరియు మలయాళం మధ్య అంతరాయం లేకుండా మారడం",
+                seoPoint4: "సంఖ్యా అనువాదం - మీరు ఎంచుకున్న భాషలో పదాలలో వ్రాయబడిన ఏదైనా సంఖ్యను చూడండి",
+                seoPoint5: "ఆఫ్లైన్లో పనిచేస్తుంది - ఒకసారి లోడ్ అయిన తర్వాత, సాధనాలు ఇంటర్నెట్ కనెక్షన్ లేకుండా పనిచేస్తాయి",
+                seoPoint6: "మొబైల్-ఫ్రెండ్లీ - ప్రతిస్పందించే డిజైన్ అన్ని పరికరాల్లో - ఫోన్లు, టాబ్లెట్లు మరియు డెస్క్టాప్లలో ఖచ్చితంగా పనిచేస్తుంది",
                 logoText: "భాషనెక్స్ట్",
                 navHome: "హోమ్",
                 navAbout: "మా గురించి",
@@ -1097,8 +1253,19 @@
                 footerMade: "బహుభాషా సమాజం కోసం ❤️తో తయారు చేయబడింది"
             },
             ta: {
-                titleText: "பாஷனெக்ஸ்ட்",
-                logoText: "பாஷனெக்ஸ்ட்",
+                titleText: "பாஷாநெக்ஸ்ட்",
+                seoTitle1: "இந்தியாவுக்கான இலவச பன்மொழி கருவிகள்",
+                seoPara1: "இந்தி (இந்தி), தெலுங்கு (தெலுங்கு), தமிழ் (தமிழ்), கன்னடம் (கன்னடம்), மலையாளம் (மலையாளம்) மற்றும் ஆங்கிலம் ஆகிய 6 இந்திய மொழிகளை ஆதரிக்கும் சக்திவாய்ந்த, இலவச ஆன்லைன் கருவிகளை பாஷாநெக்ஸ்ட் வழங்குகிறது. எங்கள் மேம்பட்ட கருவிகள் செயல்பாடுகளைச் செய்வது மட்டுமல்லாமல், நீங்கள் விரும்பும் மொழிக்கு மொழிபெயர்க்கவும் செய்கின்றன.",
+                seoTitle2: "மாணவர்கள், ஆசிரியர்கள் மற்றும் தொழில் வல்லுநர்களுக்கு ஏற்றது",
+                seoPara2: "நீங்கள் கற்றுக்கொண்டாலும், பிராந்திய மொழிகளில் கற்பித்தாலும், அல்லது வணிகத்திற்கான விரைவான கருவிகள் தேவைப்பட்டாலும், எங்கள் பன்மொழி கருவிகள் உங்கள் தாய்மொழியில் எண்களை அணுகுகின்றன. எண்-க்கு-சொல் அம்சம் எழுதுதல், புரிதல் மற்றும் கல்வி நோக்கங்களுக்கு உதவுகிறது.",
+                seoTitle3: "பாஷாநெக்ஸ்ட்-ஐ ஏன் தேர்வு செய்ய வேண்டும்?",
+                seoPoint1: "100% இலவசம்-பதிவு இல்லை, விளம்பரங்கள் இல்லை, எப்போதும் பயன்படுத்த முற்றிலும் இலவசம்",
+                seoPoint2: "தனியுரிமை முதலில் - அனைத்து கணக்கீடுகளும் மொழிபெயர்ப்புகளும் உங்கள் உலாவியில் உள்ளூரில் நிகழ்கின்றன - நாங்கள் எந்த தரவையும் சேகரிக்கவில்லை",
+                seoPoint3: "6 மொழிகள் - ஆங்கிலம், இந்தி, தெலுங்கு, தமிழ், கன்னடம் மற்றும் மலையாளம் ஆகியவற்றுக்கு இடையே தடையின்றி மாறுதல்",
+                seoPoint4: "எண் மொழிபெயர்ப்பு - நீங்கள் தேர்ந்தெடுத்த மொழியில் சொற்களில் எழுதப்பட்ட எந்த எண்ணையும் பார்க்கவும்",
+                seoPoint5: "ஆஃப்லைனில் வேலை செய்கிறது - ஏற்றப்பட்டவுடன், கருவிகள் இணைய இணைப்பு இல்லாமல் வேலை செய்கின்றன",
+                seoPoint6: "மொபைல் நட்பு - பதிலளிக்கக்கூடிய வடிவமைப்பு அனைத்து சாதனங்களிலும் சரியாக வேலை செய்கிறது - தொலைபேசிகள், டேப்லெட்டுகள் மற்றும் டெஸ்க்டாப்கள்",
+                logoText: "பாஷாநெக்ஸ்ட்",
                 navHome: "முகப்பு",
                 navAbout: "எங்களை பற்றி",
                 navTools: "கருவிகள்",
@@ -1151,11 +1318,22 @@
                 phoneTitle: "தொலைபேசி",
                 socialTitle: "சமூக ஊடகம்",
                 socialDesc: "சமூக தளங்களில் எங்களுடன் இணைக்கவும்",
-                footerText: "© 2025 பாஷனெக்ஸ்ட். அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.",
+                footerText: "© 2025 பாஷாநெக்ஸ்ட். அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.",
                 footerMade: "பன்மொழி சமூகத்திற்காக ❤️ உடன் உருவாக்கப்பட்டது"
             },
             kn: {
                 titleText: "ಭಾಷಾನೆಕ್ಸ್ಟ್",
+                seoTitle1: "ಭಾರತಕ್ಕೆ ಉಚಿತ ಬಹುಭಾಷಾ ಉಪಕರಣಗಳು",
+                seoPara1: "ಭಾಷಾನೆಕ್ಸ್ಟ್ ಹಿಂದಿ (ಹಿಂದಿ), ತೆಲುಗು (ತೆಲುಗು), ತಮಿಳು (ತಮಿಳು), ಕನ್ನಡ (ಕನ್ನಡ), ಮಲಯಾಳಂ (ಮಲಯಾಳಂ) ಮತ್ತು ಇಂಗ್ಲಿಷ್ - 6 ಭಾರತೀಯ ಭಾಷೆಗಳನ್ನು ಬೆಂಬಲಿಸುವ ಪ್ರಬಲ, ಉಚಿತ ಆನ್ಲೈನ್ ಸಾಧನಗಳನ್ನು ಒದಗಿಸುತ್ತದೆ. ನಮ್ಮ ಸುಧಾರಿತ ಸಾಧನಗಳು ಕಾರ್ಯಾಚರಣೆಗಳನ್ನು ನಡೆಸುವುದು ಮಾತ್ರವಲ್ಲದೆ ನಿಮ್ಮ ಆದ್ಯತೆಯ ಭಾಷೆಗೆ ಅನುವಾದಿಸುತ್ತವೆ.",
+                seoTitle2: "ವಿದ್ಯಾರ್ಥಿಗಳು, ಶಿಕ್ಷಕರು ಮತ್ತು ವೃತ್ತಿಪರರಿಗೆ ಪರಿಪೂರ್ಣ",
+                seoPara2: "ನೀವು ಕಲಿಯುತ್ತಿರಲಿ, ಪ್ರಾದೇಶಿಕ ಭಾಷೆಗಳಲ್ಲಿ ಬೋಧಿಸುತ್ತಿರಲಿ, ಅಥವಾ ವ್ಯವಹಾರಕ್ಕಾಗಿ ತ್ವರಿತ ಸಾಧನಗಳ ಅಗತ್ಯವಿರಲಿ, ನಮ್ಮ ಬಹುಭಾಷಾ ಸಾಧನಗಳು ನಿಮ್ಮ ಮಾತೃಭಾಷೆಯಲ್ಲಿ ಸಂಖ್ಯೆಗಳನ್ನು ಲಭ್ಯವಾಗುವಂತೆ ಮಾಡುತ್ತವೆ. ಸಂಖ್ಯೆಯಿಂದ ಪದದ ವೈಶಿಷ್ಟ್ಯವು ಬರವಣಿಗೆ, ತಿಳುವಳಿಕೆ ಮತ್ತು ಶೈಕ್ಷಣಿಕ ಉದ್ದೇಶಗಳಿಗೆ ಸಹಾಯ ಮಾಡುತ್ತದೆ.",
+                seoTitle3: "ಭಾಷಾ ನೆಕ್ಸ್ಟ್ ಅನ್ನು ಏಕೆ ಆರಿಸಬೇಕು?",
+                seoPoint1: "100% ಉಚಿತ - ನೋಂದಣಿ ಇಲ್ಲ, ಜಾಹೀರಾತುಗಳಿಲ್ಲ, ಶಾಶ್ವತವಾಗಿ ಬಳಸಲು ಸಂಪೂರ್ಣವಾಗಿ ಉಚಿತ",
+                seoPoint2: "ಗೌಪ್ಯತೆ ಮೊದಲು - ಎಲ್ಲಾ ಲೆಕ್ಕಾಚಾರಗಳು ಮತ್ತು ಅನುವಾದಗಳು ನಿಮ್ಮ ಬ್ರೌಸರ್ನಲ್ಲಿ ಸ್ಥಳೀಯವಾಗಿ ನಡೆಯುತ್ತವೆ-ನಾವು ಯಾವುದೇ ಡೇಟಾವನ್ನು ಸಂಗ್ರಹಿಸುವುದಿಲ್ಲ",
+                seoPoint3: "6 ಭಾಷೆಗಳು - ಇಂಗ್ಲಿಷ್, ಹಿಂದಿ, ತೆಲುಗು, ತಮಿಳು, ಕನ್ನಡ ಮತ್ತು ಮಲಯಾಳಂ ನಡುವೆ ತಡೆರಹಿತವಾಗಿ ಬದಲಾಗುತ್ತವೆ",
+                seoPoint4: "ಸಂಖ್ಯೆ ಅನುವಾದ - ನೀವು ಆಯ್ಕೆ ಮಾಡಿದ ಭಾಷೆಯಲ್ಲಿ ಪದಗಳಲ್ಲಿ ಬರೆಯಲಾದ ಯಾವುದೇ ಸಂಖ್ಯೆಯನ್ನು ನೋಡಿ",
+                seoPoint5: "ಆಫ್ಲೈನ್ನಲ್ಲಿ ಕೆಲಸ ಮಾಡುತ್ತದೆ - ಒಮ್ಮೆ ಲೋಡ್ ಮಾಡಿದ ನಂತರ, ಉಪಕರಣಗಳು ಅಂತರ್ಜಾಲ ಸಂಪರ್ಕವಿಲ್ಲದೆ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತವೆ",
+                seoPoint6: "ಮೊಬೈಲ್-ಸ್ನೇಹಿ - ಸ್ಪಂದಿಸುವ ವಿನ್ಯಾಸವು ಎಲ್ಲಾ ಸಾಧನಗಳಲ್ಲಿ - ಫೋನ್ಗಳು, ಟ್ಯಾಬ್ಲೆಟ್ಗಳು ಮತ್ತು ಡೆಸ್ಕ್ಟಾಪ್ಗಳಲ್ಲಿ ಸಂಪೂರ್ಣವಾಗಿ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ",
                 logoText: "ಭಾಷಾನೆಕ್ಸ್ಟ್",
                 navHome: "ಮುಖಪುಟ",
                 navAbout: "ನಮ್ಮ ಬಗ್ಗೆ",
@@ -1214,6 +1392,17 @@
             },
             ml: {
                 titleText: "ഭാഷാനെക്സ്റ്റ്",
+                seoTitle1: "ഇന്ത്യയ്ക്കായി സൌജന്യ ബഹുഭാഷാ ഉപകരണങ്ങൾ",
+                seoPara1: "ഹിന്ദി (ഹിന്ദി), തെലുങ്ക് (തെലുങ്ക്), തമിഴ് (തമിഴ്), കന്നഡ (കന്നഡ), മലയാളം (മലയാളം), ഇംഗ്ലീഷ് എന്നീ 6 ഇന്ത്യൻ ഭാഷകളെ പിന്തുണയ്ക്കുന്ന ശക്തമായ, സൌജന്യ ഓൺലൈൻ ടൂളുകൾ ഭാഷാനെക്സ്റ്റ് വാഗ്ദാനം ചെയ്യുന്നു. ഞങ്ങളുടെ നൂതന ഉപകരണങ്ങൾ പ്രവർത്തനങ്ങൾ നടത്തുക മാത്രമല്ല, നിങ്ങൾക്ക് ഇഷ്ടമുള്ള ഭാഷയിലേക്ക് വിവർത്തനം ചെയ്യുകയും ചെയ്യുന്നു.",
+                seoTitle2: "വിദ്യാർത്ഥികൾക്കും അധ്യാപകർക്കും പ്രൊഫഷണലുകൾക്കും അനുയോജ്യം",
+                seoPara2: "നിങ്ങൾ പഠിക്കുകയാണെങ്കിലും പ്രാദേശിക ഭാഷകളിൽ പഠിപ്പിക്കുകയാണെങ്കിലും അല്ലെങ്കിൽ ബിസിനസ്സിനായി പെട്ടെന്നുള്ള ഉപകരണങ്ങൾ ആവശ്യമാണെങ്കിലും, ഞങ്ങളുടെ ബഹുഭാഷാ ഉപകരണങ്ങൾ നിങ്ങളുടെ മാതൃഭാഷയിൽ നമ്പറുകൾ ആക്സസ് ചെയ്യാവുന്നതാക്കുന്നു. നമ്പർ-ടു-വേഡ് സവിശേഷത എഴുത്ത്, ധാരണ, വിദ്യാഭ്യാസ ആവശ്യങ്ങൾ എന്നിവയ്ക്ക് സഹായിക്കുന്നു.",
+                seoTitle3: "ഭാഷാനെക്സ്റ്റ് തിരഞ്ഞെടുക്കുന്നത് എന്തുകൊണ്ട്?",
+                seoPoint1: "100% സൌജന്യമായി - രജിസ്ട്രേഷൻ ഇല്ല, പരസ്യങ്ങളില്ല, എന്നെന്നേക്കുമായി ഉപയോഗിക്കാൻ പൂർണ്ണമായും സൌജന്യമാണ്",
+                seoPoint2: "സ്വകാര്യത ആദ്യം - എല്ലാ കണക്കുകൂട്ടലുകളും വിവർത്തനങ്ങളും നിങ്ങളുടെ ബ്രൌസറിൽ പ്രാദേശികമായി സംഭവിക്കുന്നു - ഞങ്ങൾ ഒരു ഡാറ്റയും ശേഖരിക്കുന്നില്ല",
+                seoPoint3: "6 ഭാഷകൾ - ഇംഗ്ലീഷ്, ഹിന്ദി, തെലുങ്ക്, തമിഴ്, കന്നഡ, മലയാളം എന്നിവയ്ക്കിടയിൽ തടസ്സമില്ലാതെ മാറുക",
+                seoPoint4: "നമ്പർ ട്രാൻസ്ലേഷൻ - നിങ്ങൾ തിരഞ്ഞെടുത്ത ഭാഷയിൽ വാക്കുകളിൽ എഴുതിയിരിക്കുന്ന ഏതെങ്കിലും നമ്പർ കാണുക",
+                seoPoint5: "ഓഫ്ലൈനിൽ പ്രവർത്തിക്കുന്നു - ഒരിക്കൽ ലോഡ് ചെയ്തുകഴിഞ്ഞാൽ, ഉപകരണങ്ങൾ ഇന്റർനെറ്റ് കണക്ഷൻ ഇല്ലാതെ പ്രവർത്തിക്കുന്നു",
+                seoPoint6: "മൊബൈൽ-ഫ്രണ്ട്ലി - പ്രതികരിക്കുന്ന ഡിസൈൻ എല്ലാ ഉപകരണങ്ങളിലും - ഫോണുകൾ, ടാബ്ലെറ്റുകൾ, ഡെസ്ക്ടോപ്പുകൾ എന്നിവയിൽ തികച്ചും പ്രവർത്തിക്കുന്നു",
                 logoText: "ഭാഷാനെക്സ്റ്റ്",
                 navHome: "ഹോം",
                 navAbout: "ഞങ്ങളെക്കുറിച്ച്",

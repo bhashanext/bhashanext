@@ -1,4 +1,4 @@
-# robots.txt for BhashaNext - Multilingual Platform
+# robots.txt for BhashaNext
 
 User-agent: *
 Allow: /
