@@ -10,7 +10,8 @@ Allow: /tools/calculator.html
 # Disallow: /private/
 
 # Sitemap location
-Sitemap: https://bhashanext.github.io/bhashanext/sitemap.xml
+# Sitemap: https://bhashanext.github.io/bhashanext/sitemap.xml
+Sitemap: https://bhashanext.online/sitemap.xml
 
 # Crawl delay (optional - prevents overloading server)
 Crawl-delay: 1

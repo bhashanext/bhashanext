@@ -2,11 +2,11 @@
 
 Welcome to **BhashaNext**!
 
-This project is a web-based application built entirely with **HTML**.
+This project is a web-based application built entirely with **HTML**, **CSS**, **JavaScript**.
 
 ## Overview
 
-BhashaNext delivers a streamlined user experience directly in the browser. The codebase is 100% HTML, designed for maximum compatibility and simplicity.
+**[BhashaNext](https://bhashanext.online/)** delivers a streamlined user experience directly in the browser. The codebase is 100% HTML, designed for maximum compatibility and simplicity.
 
 ## Features
 
@@ -34,4 +34,4 @@ To try out BhashaNext locally:
 
 ---
 
-Thank you for visiting BhashaNext!
+Thank you for visiting **[BhashaNext](https://bhashanext.online/)**!
